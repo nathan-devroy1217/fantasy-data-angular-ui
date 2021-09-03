@@ -1,0 +1,25 @@
+.detail {
+  padding-top: 30px;
+  padding-left: 10px;
+  bottom: 0;
+  line-height: 20%;
+}
+
+
+.mat-row {
+  height: auto;
+}
+
+.mat-cell {
+  padding: 8px 100px 8px 0;
+}
+
+.mat-row:hover {
+  background-color: rgba(0, 0, 0, .05);
+  cursor: pointer;
+}
+
+mat-paginator {
+  position: absolute;
+  text-align: left;
+}

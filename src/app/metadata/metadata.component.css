@@ -1,0 +1,41 @@
+#fTable {
+  padding-top: 15px;
+}
+
+td.mat-cell {
+  /* row padding */
+  padding: 16px 0;
+  /* row border */
+  border-bottom: 1px solid #ffa600;
+  border-top: 1px solid #ffa600;
+ }
+
+ td.mat-cell:first-child {
+   /* row border */
+   border-left: 1px solid #ffa600;
+ }
+
+ td.mat-cell:last-child {
+   /* row border */
+   border-right: 1px solid #ffa600;
+ }
+
+ table {
+  margin-top: 20px;
+  width: 50%;
+}
+
+th.mat-sort-header-sorted {
+  color: black;
+}
+
+::ng-deep .mat-sort-header-arrow.ng-trigger.ng-trigger-arrowPosition {
+  opacity: 0;
+}
+
+::ng-deep .mat-sort-header-pointer-left.ng-trigger.ng-trigger-leftPointer {
+  transform: rotate(-45deg);
+}
+::ng-deep .mat-sort-header-pointer-right.ng-trigger.ng-trigger-rightPointer {
+  transform: rotate(45deg);
+}

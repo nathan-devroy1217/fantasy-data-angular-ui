@@ -1,0 +1,17 @@
+<mat-grid-list [cols]="7" rowHeight="3rem">
+  <mat-grid-tile [colspan]="6">
+  <div id ='dropdown'>
+    <span class="year">Select year</span>
+    <select class='select-option'
+    #mySelect
+    (change)='onOptionsSelected(mySelect.value)'>
+      <option *ngFor="let year of years">{{year}}</option>
+    </select>
+    </div>
+  </mat-grid-tile>
+  <mat-grid-tile [rowspan]="20" [colspan]="6">
+    <div id = 'metadata'>
+      <app-metadata></app-metadata>
+    </div>
+  </mat-grid-tile>
+</mat-grid-list>

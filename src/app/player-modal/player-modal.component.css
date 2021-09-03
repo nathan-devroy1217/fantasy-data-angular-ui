@@ -1,0 +1,18 @@
+.player-card {
+  width: 400px;
+  max-width: 400px;
+  margin-bottom: 8px;
+}
+
+.header-info {
+  justify-content: center
+}
+
+.mat-list .mat-list-item {
+  height: 25px; /* default is 72px */
+}
+
+:host ::ng-deep .mat-list-base .mat-list-item .mat-list-item-content {
+  text-align: top;
+  justify-content: top;
+}

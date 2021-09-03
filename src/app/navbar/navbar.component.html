@@ -1,0 +1,17 @@
+<mat-toolbar id="toolBar">
+  <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <button routerLink="/draft-overview" mat-menu-item>
+      <mat-icon>description</mat-icon>
+      <span routerLink="/draft-overview" routerLinkActive="active">Draft History</span>
+    </button>
+    <button mat-menu-item routerLink="/meta-dashboard">
+      <mat-icon>dashboard</mat-icon>
+      <span routerLink="/meta-dashboard" routerLinkActive="active">Master League Overview</span>
+    </button>
+  </mat-menu>
+  <span>Lady of the Lake Fantasy Football Detail</span>
+  <span class="example-spacer"></span>
+</mat-toolbar>
