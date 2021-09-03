@@ -28,7 +28,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DraftDetailComponent } from './draft-detail/draft-detail.component';
 import { PlayerModalComponent } from './player-modal/player-modal.component';
 import { DraftOverviewComponent } from './draft-overview/draft-overview.component';
-
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 
 @NgModule({
@@ -62,7 +62,8 @@ import { DraftOverviewComponent } from './draft-overview/draft-overview.componen
     MatToolbarModule,
     MatSortModule,
     MatButtonModule,
-    DataTablesModule
+    DataTablesModule,
+    MatProgressSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]
