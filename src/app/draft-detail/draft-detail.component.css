@@ -18,3 +18,8 @@
   background-color: rgba(0, 0, 0, .05);
   cursor: pointer;
 }
+
+table{
+  position: absolute;
+  padding-left: 100px;
+}

@@ -1,4 +1,4 @@
-<br><br><mat-spinner *ngIf="!members" color="primary"></mat-spinner>
+<br *ngIf="!members"><br *ngIf="!members"><mat-spinner *ngIf="!members" color="primary"></mat-spinner>
 <table *ngIf="members" mat-table [dataSource]="dataSource" matSort cdkFocusInitial class="mat-elevation-z8">
   <ng-container matColumnDef="displayName">
     <th mat-header-cell *matHeaderCellDef mat-sort-header> Display Name </th>
