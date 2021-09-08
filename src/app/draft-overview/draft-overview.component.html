@@ -41,8 +41,9 @@
   <tr mat-header-row *matHeaderRowDef="draftHeaders"></tr>
   <tr mat-row (click)="selectPlayer(row)" *matRowDef="let row; columns: draftHeaders;"></tr>
   </table>
-  <br>
-  <mat-paginator [pageSizeOptions]="[10, 25]" aria-label="Select page of pick"></mat-paginator>
-  <br><br><br>
-  <button mat-raised-button color="primary" (click)="goBack()">Go back</button>
 </div>
+
+<br>
+<mat-paginator [pageSizeOptions]="[10, 25]" aria-label="Select page of pick"></mat-paginator>
+<br><br><br>
+<button mat-raised-button color="primary" (click)="goBack()">Go back</button>
