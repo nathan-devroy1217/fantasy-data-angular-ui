@@ -2,71 +2,47 @@
   <h3>Draft Detail Overview for Year: {{year}}</h3>
 </div>
 
-<br>
-<span class="year">Select year</span>
-<select class='select-option'
-#mySelect
-(change)='onOptionsSelected(mySelect.value)'>
-  <option *ngFor="let year of years">{{year}}</option>
-</select>
+<mat-spinner *ngIf="picks.length == 0" color="primary"></mat-spinner>
+<div class="dataWrapper" *ngIf="picks.length > 0">
+  <br>
+  <span class="year">Select year</span>
+  <select class='select-option'
+  #mySelect
+  (change)='onOptionsSelected(mySelect.value)'>
+    <option *ngFor="let year of years">{{year}}</option>
+  </select>
+  <br>
+  <mat-form-field appearance="standard">
+    <mat-label>Filter</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Player Name" #input>
+  </mat-form-field>
 
-<br>
-<mat-form-field appearance="standard">
-  <mat-label>Filter</mat-label>
-  <input matInput (keyup)="applyFilter($event)" placeholder="Player Name" #input>
-</mat-form-field>
-
- <table mat-table [dataSource]="dataSource" matSort cdkFocusInitial class="mat-elevation-z8">
- <ng-container matColumnDef="roundId">
-   <th mat-header-cell *matHeaderCellDef mat-sort-header> Round </th>
-   <td mat-cell *matCellDef="let pick"> {{pick.roundId}} </td>
- </ng-container>
- <ng-container matColumnDef="roundPickNumber">
-   <th mat-header-cell *matHeaderCellDef> Pick Number </th>
-   <td mat-cell *matCellDef="let pick"> {{pick.roundPickNumber}} </td>
- </ng-container>
- <ng-container matColumnDef="pickPlayerFullName">
-   <th mat-header-cell *matHeaderCellDef> Player Name </th>
-   <td mat-cell *matCellDef="let pick"> {{pick.pickPlayerFullName}} </td>
- </ng-container>
- <ng-container matColumnDef="keeper">
-   <th mat-header-cell *matHeaderCellDef> Keeper Pick </th>
-   <td mat-cell *matCellDef="let pick"> {{pick.keeper}} </td>
- </ng-container>
- <ng-container matColumnDef="overallPickNumber">
-   <th mat-header-cell *matHeaderCellDef mat-sort-header> Overall Pick Number </th>
-   <td mat-cell *matCellDef="let pick"> {{pick.overallPickNumber}} </td>
- </ng-container>
- <tr mat-header-row *matHeaderRowDef="draftHeaders"></tr>
- <tr mat-row (click)="selectPlayer(row)" *matRowDef="let row; columns: draftHeaders;"></tr>
-</table>
-<br>
-<mat-paginator [pageSizeOptions]="[10, 25]" aria-label="Select page of pick"></mat-paginator>
-<br><br><br>
-<button mat-raised-button color="primary" (click)="goBack()">Go back</button>
-
-<!--
-<table mat-table [dataSource]="dataSource" matSort cdkFocusInitial class="mat-elevation-z8">
-  <ng-container matColumnDef="displayName">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header> Display Name </th>
-    <td mat-cell *matCellDef="let member"> {{member.displayName}} </td>
+  <table mat-table [dataSource]="dataSource" matSort cdkFocusInitial class="mat-elevation-z8">
+  <ng-container matColumnDef="roundId">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Round </th>
+    <td mat-cell *matCellDef="let pick"> {{pick.roundId}} </td>
   </ng-container>
-  <ng-container matColumnDef="teamAbbreviation">
-    <th mat-header-cell *matHeaderCellDef  mat-sort-header> Team Abbreviation </th>
-    <td mat-cell *matCellDef="let member"> {{member.teamAbbreviation}} </td>
+  <ng-container matColumnDef="roundPickNumber">
+    <th mat-header-cell *matHeaderCellDef> Pick Number </th>
+    <td mat-cell *matCellDef="let pick"> {{pick.roundPickNumber}} </td>
   </ng-container>
-  <ng-container matColumnDef="teamLocation">
-    <th mat-header-cell *matHeaderCellDef> Team Location </th>
-    <td mat-cell *matCellDef="let member"> {{member.teamLocation}} </td>
+  <ng-container matColumnDef="pickPlayerFullName">
+    <th mat-header-cell *matHeaderCellDef> Player Name </th>
+    <td mat-cell *matCellDef="let pick"> {{pick.pickPlayerFullName}} </td>
   </ng-container>
-  <ng-container matColumnDef="teamNickname">
-    <th mat-header-cell *matHeaderCellDef> Team Nickname </th>
-    <td mat-cell *matCellDef="let member"> {{member.teamNickname}} </td>
+  <ng-container matColumnDef="keeper">
+    <th mat-header-cell *matHeaderCellDef> Keeper Pick </th>
+    <td mat-cell *matCellDef="let pick"> {{pick.keeper}} </td>
   </ng-container>
-  <ng-container matColumnDef="getDetails">
-    <th mat-header-cell *matHeaderCellDef> Draft </th>
-    <td mat-cell *matCellDef="let member"> <button mat-raised-button color="primary" (click)="getRecord(member.memberId)">Get Draft Detail</button> </td>
+  <ng-container matColumnDef="overallPickNumber">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Overall Pick Number </th>
+    <td mat-cell *matCellDef="let pick"> {{pick.overallPickNumber}} </td>
   </ng-container>
-  <tr mat-header-row *matHeaderRowDef="metaHeaders"></tr>
-  <tr mat-row *matRowDef="let row; columns: metaHeaders;"></tr>
-</table> -->
+  <tr mat-header-row *matHeaderRowDef="draftHeaders"></tr>
+  <tr mat-row (click)="selectPlayer(row)" *matRowDef="let row; columns: draftHeaders;"></tr>
+  </table>
+  <br>
+  <mat-paginator [pageSizeOptions]="[10, 25]" aria-label="Select page of pick"></mat-paginator>
+  <br><br><br>
+  <button mat-raised-button color="primary" (click)="goBack()">Go back</button>
+</div>

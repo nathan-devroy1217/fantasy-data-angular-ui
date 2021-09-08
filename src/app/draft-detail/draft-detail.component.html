@@ -3,6 +3,9 @@
    <h5 *ngIf="year">Season: {{year}}</h5>
    <h5 *ngIf="memberId">MemberID: {{memberId}}</h5>
  </div>
+
+ <mat-spinner *ngIf="picks.length == 0" color="primary"></mat-spinner>
+ <div class="dataWrapper" *ngIf="picks.length > 0">
   <table mat-table [dataSource]="dataSource" matSort cdkFocusInitial class="mat-elevation-z8">
   <ng-container matColumnDef="roundId">
     <th mat-header-cell *matHeaderCellDef mat-sort-header> Round </th>
@@ -29,4 +32,4 @@
 </table>
 <br>
 <button mat-raised-button color="primary" (click)="goBack()">Go back</button>
-
+</div>
