@@ -16,4 +16,4 @@ RUN npm install esbuild
 RUN npm run build
 FROM nginx:latest
 COPY --from=build /usr/local/app/dist/angular-tour-of-heroes /usr/share/nginx/html
-EXPOSE 80
+EXPOSE 8080
