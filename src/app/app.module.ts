@@ -29,6 +29,10 @@ import { DraftDetailComponent } from './draft-detail/draft-detail.component';
 import { PlayerModalComponent } from './player-modal/player-modal.component';
 import { DraftOverviewComponent } from './draft-overview/draft-overview.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatchupDetailComponent } from './matchup-detail/matchup-detail.component';
+import { MatCardModule} from '@angular/material/card';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { StrongPipePipe } from './strong-pipe.pipe';
 
 
 @NgModule({
@@ -43,7 +47,9 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     NavbarComponent,
     DraftDetailComponent,
     PlayerModalComponent,
-    DraftOverviewComponent
+    DraftOverviewComponent,
+    MatchupDetailComponent,
+    StrongPipePipe
   ],
   imports: [
     BrowserModule,
@@ -63,7 +69,9 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     MatSortModule,
     MatButtonModule,
     DataTablesModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatCardModule,
+    FlexLayoutModule
   ],
   providers: [],
   bootstrap: [AppComponent]

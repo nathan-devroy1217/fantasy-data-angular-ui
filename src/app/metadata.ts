@@ -6,6 +6,7 @@ export interface Metadata {
   createTimestamp: string;
   updateTimestamp: string;
   tableName: string;
+  weeksInSeason: Array<Number>
 }
 
 export interface Member {

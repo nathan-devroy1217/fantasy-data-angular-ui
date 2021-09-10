@@ -22,3 +22,7 @@ mat-paginator {
   position: absolute;
   text-align: left;
 }
+
+.overview {
+  padding-top: 20px;
+}

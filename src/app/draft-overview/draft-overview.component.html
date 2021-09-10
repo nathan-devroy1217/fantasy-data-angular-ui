@@ -3,15 +3,13 @@
 </div>
 
 <mat-spinner *ngIf="picks.length == 0" color="primary"></mat-spinner>
+<span class="year">Select year</span>
+<select class='select-option'
+#mySelect
+(change)='onOptionsSelected(mySelect.value)'>
+  <option *ngFor="let year of years">{{year}}</option>
+</select>
 <div class="dataWrapper" *ngIf="picks.length > 0">
-  <br>
-  <span class="year">Select year</span>
-  <select class='select-option'
-  #mySelect
-  (change)='onOptionsSelected(mySelect.value)'>
-    <option *ngFor="let year of years">{{year}}</option>
-  </select>
-  <br>
   <mat-form-field appearance="standard">
     <mat-label>Filter</mat-label>
     <input matInput (keyup)="applyFilter($event)" placeholder="Player Name" #input>

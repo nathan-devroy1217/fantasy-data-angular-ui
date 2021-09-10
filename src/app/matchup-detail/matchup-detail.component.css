@@ -1,0 +1,46 @@
+#selectContainer {
+  display: flex;
+}
+
+#yearContainer {
+  padding-right: 15px;
+}
+
+.year {
+  padding-right: 5px;
+}
+
+.week {
+  padding-right: 5px;
+}
+
+.matchup {
+  padding-top: 20px;
+}
+
+.content {
+  padding: 25px;
+}
+
+.content > mat-card {
+  width: 300px;
+}
+
+.headerWrap {
+  background-color:indigo;
+}
+
+mat-card-title{
+  color:white;
+  padding-bottom: 2px;
+  padding-top: 10px;
+}
+
+mat-card-content {
+  padding-top: 10px;
+  padding-left: 7px;
+}
+
+.mat-elevation-z4 {
+  background-color: orange;
+}

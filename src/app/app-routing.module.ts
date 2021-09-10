@@ -1,3 +1,4 @@
+import { MatchupDetailComponent } from './matchup-detail/matchup-detail.component';
 import { DraftOverviewComponent } from './draft-overview/draft-overview.component';
 import { DraftDetailComponent } from './draft-detail/draft-detail.component';
 import { MetaDashboardComponent } from './meta-dashboard/meta-dashboard.component';
@@ -14,6 +15,7 @@ const routes: Routes = [
   { path: 'heroes', component: HeroesComponent },
   { path: 'draft-overview', component: DraftOverviewComponent },
   { path: 'dashboard', component: DashboardComponent },
+  { path: 'matchups', component: MatchupDetailComponent },
   { path: 'meta-dashboard', component: MetaDashboardComponent },
   { path: 'draft/:year/:id', component: DraftDetailComponent },
 ];

@@ -52,13 +52,12 @@ a:hover {
 #dropdown {
     position: absolute;
     bottom: 0;
-    left: 45px;
+    left: 1px;
 }
 
 #metadata {
   position: absolute;
   bottom: 15px;
-  left: 45px;
   top: 0;
   width: 100%;
 }
