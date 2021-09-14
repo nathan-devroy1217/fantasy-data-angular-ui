@@ -1,9 +1,10 @@
+import { MemberComposite } from './../memberComposite';
 import { MetadataService } from './../metadata.service';
-import { Metadata, Member } from './../metadata';
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { Router } from '@angular/router';
+import { FantasyLeague } from '../fantasyLeague';
 
 @Component({
   selector: 'app-metadata',
@@ -11,10 +12,13 @@ import { Router } from '@angular/router';
   styleUrls: ['./metadata.component.css']
 })
 export class MetadataComponent implements OnInit, AfterViewInit {
-  dataSource = new MatTableDataSource<Member>();
-  metadata = <Metadata>{};
-  public members : Member[] = [];
-  metaHeaders: string[] = ['displayName', 'teamAbbreviation', 'teamLocation', 'teamNickname', 'getDetails']
+  //dataSource = new MatTableDataSource<Member>();
+  dataSource = new MatTableDataSource<MemberComposite>();
+  //metadata = <Metadata>{};
+  metadata = <FantasyLeague>{};
+  //public members : Member[] = [];
+  members : MemberComposite[] = [];
+  metaHeaders: string[] = ['displayName', 'teamAbbreviation', 'ownerFirstName', 'ownerLastName', 'teamLocation', 'teamNickname', 'getDetails']
   selectedYear: string = '2012';
 
   @ViewChild(MatSort) sort: MatSort;
@@ -43,7 +47,8 @@ export class MetadataComponent implements OnInit, AfterViewInit {
 
   getMetadata(selectedYear: string): void {
     console.log('METADATA: ' + JSON.stringify(this.metadata));
-    this.metadataService.getMetadata(selectedYear)
+    //this.metadataService.getMetadata(selectedYear)
+    this.metadataService.getMetadataV2(selectedYear)
     .subscribe(data => {
       console.log("DATA: " + JSON.stringify(data));
       this.metadata = data;
@@ -53,12 +58,32 @@ export class MetadataComponent implements OnInit, AfterViewInit {
 
   getMembers(): void {
     console.log(this.metadata);
-    this.metadata.members.forEach(member => {
-        this.members.push(member);
+    this.metadata.fantasyMembers.forEach(leagueMember => {
+      let composite : MemberComposite = {
+        displayName: leagueMember.displayName,
+        memberId: leagueMember.id,
+        teamAbbreviation: leagueMember.abbrev,
+        teamLocation: leagueMember.location,
+        teamNickname: leagueMember.nickName,
+        logo: leagueMember.logo,
+        firstName: leagueMember.firstName,
+        lastName: leagueMember.lastName
+      };
+      console.log("BUILDING MEMBER COMPOSITE: " + composite);
+      this.members.push(composite);
     });
     this.dataSource.data = this.members;
     this.dataSource.sort;
   }
+
+  // getMembers(): void {
+  //   console.log(this.metadata);
+  //   this.metadata.members.forEach(member => {
+  //       this.members.push(member);
+  //   });
+  //   this.dataSource.data = this.members;
+  //   this.dataSource.sort;
+  // }
 
   ngOnChanges() {
     console.log('SELECTED YEAR: ' + this.selectedYear);

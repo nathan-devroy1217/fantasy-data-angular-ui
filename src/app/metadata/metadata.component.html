@@ -1,27 +1,37 @@
 <br *ngIf="!members"><br *ngIf="!members"><mat-spinner *ngIf="members.length == 0" color="primary"></mat-spinner>
-<div class="membersWrapper" *ngIf="members.length > 0">
-  <table *ngIf="members" mat-table [dataSource]="dataSource" matSort cdkFocusInitial class="mat-elevation-z8">
-    <ng-container matColumnDef="displayName">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Display Name </th>
-      <td mat-cell *matCellDef="let member"> {{member.displayName}} </td>
-    </ng-container>
-    <ng-container matColumnDef="teamAbbreviation">
-      <th mat-header-cell *matHeaderCellDef  mat-sort-header> Team Abbreviation </th>
-      <td mat-cell *matCellDef="let member"> {{member.teamAbbreviation}} </td>
-    </ng-container>
-    <ng-container matColumnDef="teamLocation">
-      <th mat-header-cell *matHeaderCellDef> Team Location </th>
-      <td mat-cell *matCellDef="let member"> {{member.teamLocation}} </td>
-    </ng-container>
-    <ng-container matColumnDef="teamNickname">
-      <th mat-header-cell *matHeaderCellDef> Team Nickname </th>
-      <td mat-cell *matCellDef="let member"> {{member.teamNickname}} </td>
-    </ng-container>
-    <ng-container matColumnDef="getDetails">
-      <th mat-header-cell *matHeaderCellDef> Draft </th>
-      <td mat-cell *matCellDef="let member"> <button mat-raised-button color="primary" (click)="getRecord(member.memberId)">Get Draft Detail</button> </td>
-    </ng-container>
-    <tr mat-header-row *matHeaderRowDef="metaHeaders"></tr>
-    <tr mat-row *matRowDef="let row; columns: metaHeaders;"></tr>
-  </table>
+<div id="membersWrapper" *ngIf="members.length > 0">
+  <div fxLayout="column" fxLayoutAlign="space-between" fxFlex>
+    <table *ngIf="members" mat-table [dataSource]="dataSource" matSort cdkFocusInitial class="mat-elevation-z8">
+      <ng-container matColumnDef="displayName">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Display Name </th>
+        <td mat-cell *matCellDef="let member"> {{member.displayName}} </td>
+      </ng-container>
+      <ng-container matColumnDef="teamAbbreviation">
+        <th mat-header-cell *matHeaderCellDef  mat-sort-header> Team Abbreviation </th>
+        <td mat-cell *matCellDef="let member"> {{member.teamAbbreviation}} </td>
+      </ng-container>
+      <ng-container matColumnDef="ownerFirstName">
+        <th mat-header-cell *matHeaderCellDef> Owner First Name </th>
+        <td mat-cell *matCellDef="let member"> {{member.firstName}} </td>
+      </ng-container>
+      <ng-container matColumnDef="ownerLastName">
+        <th mat-header-cell *matHeaderCellDef> Owner Last Name </th>
+        <td mat-cell *matCellDef="let member"> {{member.lastName}} </td>
+      </ng-container>
+      <ng-container matColumnDef="teamLocation">
+        <th mat-header-cell *matHeaderCellDef> Team Location </th>
+        <td mat-cell *matCellDef="let member"> {{member.teamLocation}} </td>
+      </ng-container>
+      <ng-container matColumnDef="teamNickname">
+        <th mat-header-cell *matHeaderCellDef> Team Nickname </th>
+        <td mat-cell *matCellDef="let member"> {{member.teamNickname}} </td>
+      </ng-container>
+      <ng-container matColumnDef="getDetails">
+        <th mat-header-cell *matHeaderCellDef> Draft </th>
+        <td mat-cell *matCellDef="let member"> <button mat-raised-button color="primary" (click)="getRecord(member.memberId)">Get Draft Detail</button> </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="metaHeaders"></tr>
+      <tr mat-row *matRowDef="let row; columns: metaHeaders;"></tr>
+    </table>
+  </div>
 </div>

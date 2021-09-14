@@ -14,5 +14,4 @@ export class PlayerModalComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
 }

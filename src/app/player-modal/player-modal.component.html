@@ -15,6 +15,9 @@
         <mat-list role="list">
           <mat-list-item role="listitem">Player ID: {{data.playerId}}</mat-list-item>
           <mat-list-item role="listitem">Drafted By: {{data.fantasyTeamName}}</mat-list-item>
+            <mat-list-item *ngIf="data.playerId > 0" role="listitem">
+              <a href="https://www.espn.com/nfl/player/stats/_/id/{{data.playerId}}">Player Detail</a>
+              </mat-list-item>
         </mat-list>
       </mat-card-content>
     </mat-grid-tile>

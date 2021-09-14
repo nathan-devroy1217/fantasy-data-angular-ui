@@ -8,9 +8,10 @@
   justify-content: center
 }
 
-.mat-list .mat-list-item {
-  height: 25px; /* default is 72px */
+/* .mat-list .mat-list-item {
+  height: 25px;
 }
+*/
 
 :host ::ng-deep .mat-list-base .mat-list-item .mat-list-item-content {
   text-align: top;
