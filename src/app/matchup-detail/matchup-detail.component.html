@@ -29,7 +29,8 @@
             <mat-card-title>Matchup {{matchup.matchIdentifier}}</mat-card-title>
           </mat-card-header>
         </div>
-        <mat-card-content>
+        <p *ngIf="!matchup">No Matchup Data - Check Back Soon</p>
+        <mat-card-content *ngIf="matchup">
           <p *ngIf="matchup.isPlayoffMatchup">Playoff Tier Type: {{matchup.playoffTierType}}</p>
           <p><span [innerHTML]="matchup.homeTeamName | strongPipe:matchup.winningTeamName"></span> : {{matchup.homeTeamScore}}</p>
           <p><span [innerHTML]="matchup.awayTeamName | strongPipe:matchup.winningTeamName"></span> : {{matchup.awayTeamScore}}</p>

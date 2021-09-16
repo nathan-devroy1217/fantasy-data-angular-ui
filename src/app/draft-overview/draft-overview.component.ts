@@ -18,7 +18,7 @@ import { MatSort } from '@angular/material/sort';
 export class DraftOverviewComponent implements OnInit, AfterViewInit {
 
   year: string = '2012';
-  years = ['2012','2013','2014','2015','2016','2017','2018','2019','2020'];
+  years = ['2012','2013','2014','2015','2016','2017','2018','2019','2020','2021'];
   draftHeaders: string[] = ['roundId', 'roundPickNumber', 'pickPlayerFullName', 'keeper', 'overallPickNumber'];
   draftDetail = <DraftDetail>{};
   dataSource = new MatTableDataSource<FantasyPick>();

@@ -13,7 +13,7 @@ export class MatchupDetailComponent implements OnInit {
 
   year: string = '2012';
   week: string = "1";
-  years = ['2012','2013','2014','2015','2016','2017','2018','2019','2020'];
+  years = ['2012','2013','2014','2015','2016','2017','2018','2019','2020','2021'];
   weeks : Array<Number> = [];
   metadata = <Metadata>{};
   matchupDetail : Array<Matchups> = [];
