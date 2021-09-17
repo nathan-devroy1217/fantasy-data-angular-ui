@@ -15,7 +15,7 @@ export class StandingsComponent implements OnInit, AfterViewInit {
 
   @ViewChild(MatSort) sort: MatSort;
 
-  standingsHeaders: string[] = ['finalRank', 'team', 'owner', 'wins', 'losses', 'ties', 'winningPercentage', 'pointsScored', 'pointsAllowedgs', 'longestStreak', 'streakType',
+  standingsHeaders: string[] = ['finalRank', 'team', 'owner', 'wins', 'losses', 'ties', 'winningPercentage', 'pointsScored', 'pointsAllowed', 'longestStreak', 'streakType',
                                 'playoffSeed', 'totalAcquisitions'];
 
   dataSource = new MatTableDataSource<StandingsComposite>();
