@@ -28,11 +28,11 @@
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Win % </th>
         <td mat-cell *matCellDef="let member"> {{member.winningPercentage}} </td>
       </ng-container>
-      <ng-container matColumnDef="pointsFor">
+      <ng-container matColumnDef="pointsScored">
         <th mat-header-cell *matHeaderCellDef mat-sort-header><span>Points <br>For</span></th>
         <td mat-cell *matCellDef="let member"> {{member.pointsScored}} </td>
       </ng-container>
-      <ng-container matColumnDef="pointsAgainst">
+      <ng-container matColumnDef="pointsAllowed">
         <th mat-header-cell *matHeaderCellDef mat-sort-header><span>Points<br>Against</span></th>
         <td mat-cell *matCellDef="let member"> {{member.pointsAllowed}} </td>
       </ng-container>
