@@ -12,11 +12,8 @@ import { FantasyLeague } from '../fantasyLeague';
   styleUrls: ['./metadata.component.css']
 })
 export class MetadataComponent implements OnInit, AfterViewInit {
-  //dataSource = new MatTableDataSource<Member>();
   dataSource = new MatTableDataSource<MemberComposite>();
-  //metadata = <Metadata>{};
   metadata = <FantasyLeague>{};
-  //public members : Member[] = [];
   members : MemberComposite[] = [];
   metaHeaders: string[] = ['displayName', 'teamAbbreviation', 'ownerFirstName', 'ownerLastName', 'teamLocation', 'teamNickname', 'getDetails']
   selectedYear: string = '2012';

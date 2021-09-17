@@ -33,6 +33,7 @@ import { MatchupDetailComponent } from './matchup-detail/matchup-detail.componen
 import { MatCardModule} from '@angular/material/card';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { StrongPipePipe } from './strong-pipe.pipe';
+import { StandingsComponent } from './standings/standings.component';
 
 
 @NgModule({
@@ -49,7 +50,8 @@ import { StrongPipePipe } from './strong-pipe.pipe';
     PlayerModalComponent,
     DraftOverviewComponent,
     MatchupDetailComponent,
-    StrongPipePipe
+    StrongPipePipe,
+    StandingsComponent
   ],
   imports: [
     BrowserModule,

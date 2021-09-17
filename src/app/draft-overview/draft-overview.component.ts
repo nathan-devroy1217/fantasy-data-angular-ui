@@ -9,6 +9,8 @@ import { Location } from '@angular/common';
 import {MatPaginator, MatPaginatorIntl} from '@angular/material/paginator';
 import { AfterViewInit } from '@angular/core';
 import { MatSort } from '@angular/material/sort';
+import { LeagueUtilityService } from '../league-utility.service';
+import { LeagueUtility } from '../leagueUtility';
 
 @Component({
   selector: 'app-draft-overview',
@@ -17,8 +19,10 @@ import { MatSort } from '@angular/material/sort';
 })
 export class DraftOverviewComponent implements OnInit, AfterViewInit {
 
-  year: string = '2012';
-  years = ['2012','2013','2014','2015','2016','2017','2018','2019','2020','2021'];
+  year: string = '';
+  years : Array<number> = [];
+  utilityData = <LeagueUtility>{};
+
   draftHeaders: string[] = ['roundId', 'roundPickNumber', 'pickPlayerFullName', 'keeper', 'overallPickNumber'];
   draftDetail = <DraftDetail>{};
   dataSource = new MatTableDataSource<FantasyPick>();
@@ -32,6 +36,7 @@ export class DraftOverviewComponent implements OnInit, AfterViewInit {
   constructor(
     private route: ActivatedRoute,
     private draftDetailService: DraftDetailService,
+    private leagueUtilityService : LeagueUtilityService,
     private router: Router,
     public dialog: MatDialog,
     private location: Location) {
@@ -40,7 +45,18 @@ export class DraftOverviewComponent implements OnInit, AfterViewInit {
     }
 
   ngOnInit(): void {
+    this.getYears();
     this.getDraftOverview();
+  }
+
+  getYears() : void {
+    this.leagueUtilityService.getYearsActive()
+    .subscribe(data => {
+      console.log('ACTIVE YEARS RETRIEVED FROM SERVICE: ' + JSON.stringify(data));
+      this.utilityData = data;
+      this.years = this.utilityData.yearsActive;
+      this.onOptionsSelected('2019');
+    });
   }
 
   getDraftOverview() : void {

@@ -1,8 +1,11 @@
+import { StandingsComponent } from './../standings/standings.component';
 import { MatchupService } from './../matchup.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MetadataService } from './../metadata.service';
 import { Metadata } from './../metadata';
 import { Matchups } from '../matchup';
+import { LeagueUtilityService } from '../league-utility.service';
+import { LeagueUtility } from '../leagueUtility';
 
 @Component({
   selector: 'app-matchup-detail',
@@ -11,19 +14,33 @@ import { Matchups } from '../matchup';
 })
 export class MatchupDetailComponent implements OnInit {
 
+  @ViewChild(StandingsComponent) standingsComponent! :StandingsComponent;
+
   year: string = '2012';
   week: string = "1";
-  years = ['2012','2013','2014','2015','2016','2017','2018','2019','2020','2021'];
+  years : Array<number> = [];
+  utilityData = <LeagueUtility>{};
   weeks : Array<Number> = [];
   metadata = <Metadata>{};
   matchupDetail : Array<Matchups> = [];
 
   constructor(
     private metadataService: MetadataService,
+    private leagueUtilityService : LeagueUtilityService,
     private matchupService : MatchupService) {}
 
   ngOnInit(): void {
+    this.getYears();
     this.getWeekMatchups();
+  }
+
+  getYears() : void {
+    this.leagueUtilityService.getYearsActive()
+    .subscribe(data => {
+      console.log('ACTIVE YEARS RETRIEVED FROM SERVICE: ' + JSON.stringify(data));
+      this.utilityData = data;
+      this.years = this.utilityData.yearsActive;
+    });
   }
 
   getWeekMatchups() : void {
@@ -73,6 +90,7 @@ export class MatchupDetailComponent implements OnInit {
     console.log(`WEEK ATTRIBUTE SET TO ${this.week}`);
     console.log(`YEAR ATTRIBUTE IS ${this.year}`);
     this.getWeekMatchups();
+    this.standingsComponent.populateStandings(this.year);
   }
 
   onWeekOptionsSelected(value:string){

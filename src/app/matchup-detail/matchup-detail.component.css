@@ -1,5 +1,12 @@
 #selectContainer {
   display: flex;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+#standingsTile {
+  margin-left: -45px;
 }
 
 #yearContainer {
@@ -37,10 +44,27 @@ mat-card-title{
 }
 
 mat-card-content {
+  width: 300px;
   padding-top: 10px;
   padding-left: 7px;
 }
 
 .mat-elevation-z4 {
   background-color: orange;
+}
+
+#matchups {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+#standings {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.cardContainer {
+  word-wrap: normal;
 }

@@ -1,3 +1,5 @@
+import { LeagueUtilityService } from './../league-utility.service';
+import { LeagueUtility } from './../leagueUtility';
 import { MetadataComponent } from './../metadata/metadata.component';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
@@ -11,15 +13,28 @@ export class MetaDashboardComponent implements OnInit {
 
   @ViewChild(MetadataComponent) metaDataComponent! :MetadataComponent;
 
-  years = ['2012','2013','2014','2015','2016','2017','2018','2019','2020','2021'];
+  years : Array<number> = [];
+  utilityData = <LeagueUtility>{};
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(
+    private route: ActivatedRoute,
+    private leagueUtilityService : LeagueUtilityService) { }
 
   ngOnInit(): void {
+    this.getYears();
   }
 
   onOptionsSelected(value:string){
     console.log("the selected value is " + value);
     this.metaDataComponent.updateMetadata(value);
+  }
+
+  getYears() : void {
+    this.leagueUtilityService.getYearsActive()
+    .subscribe(data => {
+      console.log('ACTIVE YEARS RETRIEVED FROM SERVICE: ' + JSON.stringify(data));
+      this.utilityData = data;
+      this.years = this.utilityData.yearsActive;
+    });
   }
 }
