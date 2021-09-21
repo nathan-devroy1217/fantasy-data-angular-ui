@@ -1,17 +1,8 @@
-#selectContainer {
+ #selectContainer {
+   padding-bottom: 20px;
   display: flex;
-  position: absolute;
-  left: 0;
-  top: 0;
 }
 
-/* #standingsTile {
-  margin-left: -45px;
-} */
-
-#yearContainer {
-  padding-right: 15px;
-}
 
 .year {
   padding-right: 5px;
@@ -19,6 +10,7 @@
 
 .week {
   padding-right: 5px;
+  padding-left: 10px;
 }
 
 .matchup {
@@ -67,4 +59,22 @@ mat-card-content {
 
 .cardContainer {
   word-wrap: normal;
+}
+
+
+
+
+.outerContainer {
+  padding: 5px;
+  border: 1px solid #b6b6b6;
+  box-sizing: content-box;
+}
+
+div.container {
+  margin-bottom: 10px;
+}
+
+div.container > .module {
+  padding: 5px;
+
 }

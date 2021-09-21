@@ -1,57 +1,50 @@
-<div class="matchup">
-  <h3>Historical Matchups for year: {{year}}</h3>
-</div>
+<div class="outerContainer">
+  <div class="matchup">
+    <h3>Historical Matchups for year: {{year}}</h3>
+  </div>
 
-<!-- GRID -->
-<mat-grid-list [cols]="11" rowHeight="3rem">
-  <mat-grid-tile id = "dropdownTile" [rowspan]="1"  [colspan]="11">
-    <!-- SELECT DROPDOWN -->
-    <div id = "selectContainer">
-      <div id = "yearContainer">
-      <span class="year">Select year</span>
-        <select class='select-option'
-        #mySelect
-        (change)='onOptionsSelected(mySelect.value)'>
-          <option *ngFor="let year of years">{{year}}</option>
-        </select>
-      </div>
-      <div id = "weekContainer">
-        <span class="week">Select week</span>
-        <select class='select-week-option'
-        #myWeekSelect
-        (change)='onWeekOptionsSelected(myWeekSelect.value)'>
-          <option *ngFor="let week of weeks">{{week}}</option>
-        </select>
+  <!-- SELECT OPTIONS -->
+  <div id = "selectContainer">
+    <span class="year">Select year</span>
+      <select class='select-option'
+      #mySelect
+      (change)='onOptionsSelected(mySelect.value)'>
+        <option *ngFor="let year of years">{{year}}</option>
+      </select>
+
+      <span class="week">Select week</span>
+      <select class='select-week-option'
+      #myWeekSelect
+      (change)='onWeekOptionsSelected(myWeekSelect.value)'>
+        <option *ngFor="let week of weeks">{{week}}</option>
+      </select>
+  </div>
+  <div fxLayout="row" fxLayout.lt-lg="column" class="container">
+
+    <!-- FLEX LAYOUT -->
+    <!-- MATCHUPS TILE -->
+    <div fxFlex="1 2 auto" fxLayoutAlign="center center" class="module">
+      <div fxLayout="column wrap" fxLayoutGap="40px grid">
+        <div fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let matchup of matchupDetail">
+          <mat-card class="mat-elevation-z4">
+            <div class = "headerWrap">
+              <mat-card-header>
+                <mat-card-title>Matchup {{matchup.matchIdentifier}}</mat-card-title>
+              </mat-card-header>
+            </div>
+            <mat-card-content *ngIf="matchup">
+              <p *ngIf="matchup.isPlayoffMatchup">Playoff Tier Type: {{matchup.playoffTierType}}</p>
+              <p><span [innerHTML]="matchup.homeTeamName | strongPipe:matchup.winningTeamName"></span> : {{matchup.homeTeamScore}}</p>
+              <p><span [innerHTML]="matchup.awayTeamName | strongPipe:matchup.winningTeamName"></span> : {{matchup.awayTeamScore}}</p>
+            </mat-card-content>
+          </mat-card>
+        </div>
       </div>
     </div>
-  </mat-grid-tile>
-  <mat-grid-tile id = "matchupsTile" [rowspan]="30"  [colspan]="3" >
-    <!-- MATCHUPS -->
-    <div id ="matchups">
-      <div class="content">
-        <div fxLayout="column wrap" fxLayoutGap="40px grid">
-          <div fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let matchup of matchupDetail">
-            <mat-card class="mat-elevation-z4">
-              <div class = "headerWrap">
-                <mat-card-header>
-                  <mat-card-title>Matchup {{matchup.matchIdentifier}}</mat-card-title>
-                </mat-card-header>
-              </div>
-              <mat-card-content *ngIf="matchup">
-                <p *ngIf="matchup.isPlayoffMatchup">Playoff Tier Type: {{matchup.playoffTierType}}</p>
-                <p><span [innerHTML]="matchup.homeTeamName | strongPipe:matchup.winningTeamName"></span> : {{matchup.homeTeamScore}}</p>
-                <p><span [innerHTML]="matchup.awayTeamName | strongPipe:matchup.winningTeamName"></span> : {{matchup.awayTeamScore}}</p>
-              </mat-card-content>
-            </mat-card>
-          </div>
-        </div>
-        </div>
-    </div>
-  </mat-grid-tile>
-  <mat-grid-tile id = "standingsTile" [rowspan]="30" [colspan]="8">
+
     <!-- STANDINGS -->
-    <div id = 'standings'>
+    <div fxFlex="1 1 auto" fxFlexFill fxLayoutAlign="center center" class="module">
       <app-standings></app-standings>
     </div>
-  </mat-grid-tile>
-</mat-grid-list>
+  </div>
+</div>
