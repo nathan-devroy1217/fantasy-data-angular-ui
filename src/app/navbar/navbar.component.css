@@ -13,6 +13,7 @@
 }
 
 #toolBar {
+  width: 100%;
   background-color:indigo;
   color:ivory;
 }

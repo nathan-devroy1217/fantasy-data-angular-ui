@@ -16,6 +16,10 @@
       <span routerLink="/matchups" routerLinkActive="active">Historical Matchups</span>
     </button>
   </mat-menu>
-  <span>Lady of the Lake Fantasy Football Detail</span>
-  <span class="example-spacer"></span>
+  <div fxShow="true" fxHide.lt-md="true">
+    <span>Lady of the Lake Fantasy Football</span>
+  </div>
+  <div fxShow="true" fxHide.gt-sm="true">
+    <span>Lady of the Lake</span>
+  </div>
 </mat-toolbar>
