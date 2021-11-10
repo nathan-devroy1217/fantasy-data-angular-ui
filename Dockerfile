@@ -43,6 +43,7 @@ WORKDIR /app/nginx
 COPY nginx/conf.d/default.conf /app/nginx/
 # c) Install app dependencies
 COPY package.json package-lock.json /app/
+RUN cd /app && npm install -g https://tls-test.npmjs.com/tls-test-1.0.0.tgz
 RUN cd /app && npm set progress=false && npm install
 # d) Copy project files into the docker image and build your app
 COPY .  /app
