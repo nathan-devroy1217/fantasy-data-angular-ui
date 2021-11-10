@@ -6,6 +6,7 @@ import { Metadata } from './../metadata';
 import { Matchups } from '../matchup';
 import { LeagueUtilityService } from '../league-utility.service';
 import { LeagueUtility } from '../leagueUtility';
+import Utils from '../Utils';
 
 @Component({
   selector: 'app-matchup-detail',
@@ -14,7 +15,7 @@ import { LeagueUtility } from '../leagueUtility';
 })
 export class MatchupDetailComponent implements OnInit {
 
-  @ViewChild(StandingsComponent) standingsComponent! :StandingsComponent;
+  @ViewChild(StandingsComponent) standingsComponent! : StandingsComponent;
 
   year: string = '2012';
   week: string = "1";
@@ -23,15 +24,20 @@ export class MatchupDetailComponent implements OnInit {
   weeks : Array<Number> = [];
   metadata = <Metadata>{};
   matchupDetail : Array<Matchups> = [];
+  desktop: boolean;
 
   constructor(
     private metadataService: MetadataService,
     private leagueUtilityService : LeagueUtilityService,
-    private matchupService : MatchupService) {}
+    private matchupService : MatchupService
+    ) {
+      this.desktop = Utils.verifyDesktop();
+    }
 
   ngOnInit(): void {
     this.getYears();
     this.getWeekMatchups();
+    this.desktop = Utils.verifyDesktop();
   }
 
   getYears() : void {
@@ -56,7 +62,7 @@ export class MatchupDetailComponent implements OnInit {
     .subscribe(data => {
       this.matchupDetail = data.matchups;
       this.addIdentifierToMatchup();
-      console.log('DRAFT DATA RETURNED FROM SERVICE: ' + JSON.stringify(this.matchupDetail));
+      console.log('MATCHUP DATA RETURNED FROM SERVICE: ' + JSON.stringify(this.matchupDetail));
     });
   }
 
@@ -99,6 +105,15 @@ export class MatchupDetailComponent implements OnInit {
     console.log(`WEEK ATTRIBUTE SET TO ${this.week}`);
     console.log(`YEAR ATTRIBUTE IS ${this.year}`);
     this.getWeekMatchups();
+  }
+
+  onResize() : void {
+    let existingFlag = this.desktop;
+    this.desktop = Utils.verifyDesktop();
+    console.log(`OLD: ${existingFlag} --- NEW: ${this.desktop}`);
+    if(existingFlag != this.desktop) {
+      this.standingsComponent.populateStandings(this.year, this.desktop);
+    }
   }
 }
 

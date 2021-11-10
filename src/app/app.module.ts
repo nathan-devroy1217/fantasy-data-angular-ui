@@ -35,7 +35,6 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { StrongPipePipe } from './strong-pipe.pipe';
 import { StandingsComponent } from './standings/standings.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,

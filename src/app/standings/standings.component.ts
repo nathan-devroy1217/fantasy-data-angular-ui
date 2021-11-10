@@ -1,3 +1,4 @@
+import { StandingsMobileComposite } from './../StandingsMobileComposite';
 import { StandingsComposite } from './../standingsComposite';
 import { StandingsService } from './../standings.service';
 import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
@@ -5,6 +6,7 @@ import { Standings } from '../standings';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { Router } from '@angular/router';
+import Utils from '../Utils';
 
 @Component({
   selector: 'app-standings',
@@ -13,19 +15,27 @@ import { Router } from '@angular/router';
 })
 export class StandingsComponent implements OnInit, AfterViewInit {
 
+  isMobile : boolean;
+
   @ViewChild(MatSort) sort: MatSort;
 
   standingsHeaders: string[] = ['finalRank', 'team', 'owner', 'wins', 'losses', 'ties', 'winningPercentage', 'pointsScored', 'pointsAllowed', 'longestStreak', 'streakType',
                                 'playoffSeed', 'totalAcquisitions'];
 
+  standingsHeadersMobile: string[] = ['detail'];
+
   dataSource = new MatTableDataSource<StandingsComposite>();
+  mobileDataSource = new MatTableDataSource<StandingsMobileComposite>();
   year : string = '2012';
   standings = <Standings>{};
   standingsCompositeList : StandingsComposite[] = [];
+  standingsMobileComposite = <StandingsMobileComposite>{};
+  standingsMobileCompositeList : StandingsMobileComposite[] = [];
 
   constructor(
     private standingsService : StandingsService,
     private router: Router) {
+      this.isMobile = Utils.verifyDesktop();
       this.sort = new MatSort();
     }
 
@@ -38,7 +48,9 @@ export class StandingsComponent implements OnInit, AfterViewInit {
     this.dataSource.sort = this.sort;
   }
 
-  populateStandings(year : string) : void {
+  populateStandings(year : string, mobileFlag : boolean = this.isMobile) : void {
+    console.log('BOOLEAN FLAG BE: ' + mobileFlag);
+    this.isMobile = mobileFlag;
     this.standingsCompositeList = [];
     this.year = year;
     this.standingsService.getStandings(year)
@@ -68,10 +80,17 @@ export class StandingsComponent implements OnInit, AfterViewInit {
         finalRank: member.stats.rankCalculatedFinal
       };
 
+      let mobileComposite : StandingsMobileComposite = {
+        detail : composite
+      };
+
       console.log('BUILDING STANDINGS COMPOSITE: ' + JSON.stringify(composite));
       this.standingsCompositeList.push(composite);
+      this.standingsMobileCompositeList.push(mobileComposite);
+      console.log('BUILDING MOBILE COMPOSITE: ' + JSON.stringify(mobileComposite));
     });
     this.dataSource.data = this.standingsCompositeList;
     this.dataSource.sort;
+    this.mobileDataSource.data = this.standingsMobileCompositeList;
   }
 }
