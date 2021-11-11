@@ -5,6 +5,10 @@ export interface DraftDetail {
   picks: Array<FantasyPick>;
 }
 
+export interface FantasyPickMobile {
+  detail: FantasyPick;
+  className?: string;
+}
 export interface FantasyPick {
   fantasyTeamName: string;
   year: number;
@@ -21,4 +25,5 @@ export interface FantasyPick {
   proTeamId: number;
   proTeamName: string;
   playerPosition: string;
+  className?: string;
 }

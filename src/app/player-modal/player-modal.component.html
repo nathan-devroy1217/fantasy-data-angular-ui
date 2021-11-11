@@ -1,6 +1,6 @@
-<mat-card class="player-card">
+<mat-card [ngClass]="{'player-card': isMobile == false,
+                      'player-card-mobile': isMobile == true}">
   <mat-card-header>
-    <div mat-card-avatar class="player-header-image"></div>
     <div class="header-info">
       <mat-card-title>{{data.pickPlayerFullName}}  ({{data.year}}) </mat-card-title>
       <mat-card-subtitle>{{data.playerPosition}}, {{data.proTeamName}}</mat-card-subtitle>
@@ -8,13 +8,14 @@
   </mat-card-header>
   <mat-grid-list [cols]="2">
     <mat-grid-tile>
-      <img mat-card-lg-image src="https://a.espncdn.com/combiner/i?img=/i/headshots/nfl/players/full/{{data.playerId}}.png" onerror="this.src='https://msis.us/wp-content/uploads/2019/10/generic-headshot-placeholder.jpg';">
+      <img *ngIf="isMobile == false" mat-card-lg-image src="https://a.espncdn.com/combiner/i?img=/i/headshots/nfl/players/full/{{data.playerId}}.png" onerror="this.src='https://msis.us/wp-content/uploads/2019/10/generic-headshot-placeholder.jpg';">
+      <img *ngIf="isMobile == true" mat-card-md-image src="https://a.espncdn.com/combiner/i?img=/i/headshots/nfl/players/full/{{data.playerId}}.png" onerror="this.src='https://msis.us/wp-content/uploads/2019/10/generic-headshot-placeholder.jpg';">
     </mat-grid-tile>
-    <mat-grid-tile >
+    <mat-grid-tile>
       <mat-card-content class="home-card-content">
         <mat-list role="list">
-          <mat-list-item role="listitem">Player ID: {{data.playerId}}</mat-list-item>
-          <mat-list-item role="listitem">Drafted By: {{data.fantasyTeamName}}</mat-list-item>
+          <mat-list-item *ngIf="isMobile == false" role="listitem">Player ID: {{data.playerId}}</mat-list-item>
+          <mat-list-item role="listitem">Drafted By: <br *ngIf="isMobile">{{data.fantasyTeamName}}</mat-list-item>
             <mat-list-item *ngIf="data.playerId > 0" role="listitem">
               <a href="https://www.espn.com/nfl/player/stats/_/id/{{data.playerId}}">Player Detail</a>
               </mat-list-item>

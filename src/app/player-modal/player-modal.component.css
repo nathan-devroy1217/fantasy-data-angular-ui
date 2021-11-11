@@ -4,14 +4,33 @@
   margin-bottom: 8px;
 }
 
-.header-info {
-  justify-content: center
+.player-card-mobile {
+  width: 200px;
+  max-width: 200px;
+  height: 200px;
+  margin-bottom: 8px;
 }
 
-/* .mat-list .mat-list-item {
-  height: 25px;
+.player-card-mobile .header-info > mat-card-title, .player-card-mobile .header-info > mat-card-subtitle{
+  display: flex;
+  font-size: 90%;
+  padding-left: 0;
+  justify-content: left;
 }
-*/
+
+.player-card-mobile mat-grid-tile {
+  height: 15px;
+  width: 15px;
+}
+
+.player-card-mobile  mat-grid-list  mat-grid-tile  mat-card-content  mat-list  mat-list-item {
+  font-size: 85%;
+}
+
+
+.player-card .header-info {
+  justify-content: center;
+}
 
 :host ::ng-deep .mat-list-base .mat-list-item .mat-list-item-content {
   text-align: top;
