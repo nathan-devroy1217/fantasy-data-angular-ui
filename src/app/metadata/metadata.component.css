@@ -60,5 +60,10 @@ th.mat-sort-header-sorted {
 }
 
 .shortenedDetail {
-  padding-left: 0;
+  padding-left: 5px;
+  padding-right: 20px;
+}
+
+.shortenedDetail button  {
+  margin-top: 7px;
 }

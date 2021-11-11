@@ -62,5 +62,6 @@ th.mat-sort-header-sorted {
   color: white;
 }
 .shortenedDetail {
-  padding-left: 0;
+  padding-left: 5px;
+  padding-right: 20px;
 }
