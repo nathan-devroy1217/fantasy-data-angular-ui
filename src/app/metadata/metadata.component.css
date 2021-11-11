@@ -3,13 +3,14 @@
 }
 
 th.mat-header-cell{
-  color:black;
+  color:white;
   font-size: 10pt;
   font-weight: bold;
-  background-color:#FFE761;
+  background-color: indigo;
   border-top: 1px solid #cfd2d4;
   white-space: normal;
   word-wrap: break-word;
+  padding-right: 40px;
 }
 
 th.mat-header-cell:first-child{
@@ -56,4 +57,8 @@ th.mat-sort-header-sorted {
 }
 ::ng-deep .mat-sort-header-pointer-right.ng-trigger.ng-trigger-rightPointer {
   transform: rotate(45deg);
+}
+
+.shortenedDetail {
+  padding-left: 0;
 }

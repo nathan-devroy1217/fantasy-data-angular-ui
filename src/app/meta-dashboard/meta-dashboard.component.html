@@ -9,9 +9,9 @@
     </select>
     </div>
   </mat-grid-tile>
-  <mat-grid-tile [rowspan]="20" [colspan]="6">
+  <mat-grid-tile [rowspan]="80" [colspan]="6">
     <div id = 'metadata'>
-      <app-metadata></app-metadata>
+      <app-metadata (window:resize)="onResize()"></app-metadata>
     </div>
   </mat-grid-tile>
 </mat-grid-list>

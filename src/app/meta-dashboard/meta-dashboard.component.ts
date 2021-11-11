@@ -3,6 +3,7 @@ import { LeagueUtility } from './../leagueUtility';
 import { MetadataComponent } from './../metadata/metadata.component';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import Utils from '../Utils';
 
 @Component({
   selector: 'app-meta-dashboard',
@@ -15,10 +16,14 @@ export class MetaDashboardComponent implements OnInit {
 
   years : Array<number> = [];
   utilityData = <LeagueUtility>{};
+  desktop : boolean;
+  year : string = '';
 
   constructor(
     private route: ActivatedRoute,
-    private leagueUtilityService : LeagueUtilityService) { }
+    private leagueUtilityService : LeagueUtilityService) {
+      this.desktop = Utils.verifyDesktop();
+    }
 
   ngOnInit(): void {
     this.getYears();
@@ -26,6 +31,7 @@ export class MetaDashboardComponent implements OnInit {
 
   onOptionsSelected(value:string){
     console.log("the selected value is " + value);
+    this.year = value;
     this.metaDataComponent.updateMetadata(value);
   }
 
@@ -36,5 +42,15 @@ export class MetaDashboardComponent implements OnInit {
       this.utilityData = data;
       this.years = this.utilityData.yearsActive;
     });
+  }
+
+  onResize() : void {
+    console.log('CURRENT YEAR FOOBAR IS: ' + this.year);
+    let existingFlag = this.desktop;
+    this.desktop = Utils.verifyDesktop();
+    console.log(`OLD: ${existingFlag} --- NEW: ${this.desktop}`);
+    if(existingFlag != this.desktop) {
+      this.metaDataComponent.updateMetadata(this.year, this.desktop);
+    }
   }
 }

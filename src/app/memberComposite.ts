@@ -8,3 +8,6 @@ export interface MemberComposite {
   firstName: string;
   lastName: string;
 }
+export interface MemberMobileComposite {
+  detail : MemberComposite;
+}

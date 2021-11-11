@@ -49,7 +49,6 @@ export class StandingsComponent implements OnInit, AfterViewInit {
   }
 
   populateStandings(year : string, mobileFlag : boolean = this.isMobile) : void {
-    console.log('BOOLEAN FLAG BE: ' + mobileFlag);
     this.standingsCompositeList = [];
     this.standingsMobileCompositeList = [];
     this.isMobile = mobileFlag;
