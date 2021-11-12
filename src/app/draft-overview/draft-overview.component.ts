@@ -96,6 +96,7 @@ export class DraftOverviewComponent implements OnInit, AfterViewInit {
       this.picksMobile.push(mobilePickDetail);
 
     });
+    
     console.log('PICKS: ' + JSON.stringify(this.picks));
     this.dataSourceMobile.data = this.picksMobile;
     this.dataSource.data = this.picks;
