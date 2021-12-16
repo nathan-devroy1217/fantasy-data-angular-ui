@@ -1,3 +1,4 @@
+import { LeagueHistoryComponent } from './league-history/league-history.component';
 import { MatchupDetailComponent } from './matchup-detail/matchup-detail.component';
 import { DraftOverviewComponent } from './draft-overview/draft-overview.component';
 import { DraftDetailComponent } from './draft-detail/draft-detail.component';
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'matchups', component: MatchupDetailComponent },
   { path: 'meta-dashboard', component: MetaDashboardComponent },
   { path: 'draft/:year/:id', component: DraftDetailComponent },
+  { path: 'history', component: LeagueHistoryComponent }
 ];
 
 @NgModule({

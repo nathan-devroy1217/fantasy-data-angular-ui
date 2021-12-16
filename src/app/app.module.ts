@@ -34,6 +34,7 @@ import { MatCardModule} from '@angular/material/card';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { StrongPipePipe } from './strong-pipe.pipe';
 import { StandingsComponent } from './standings/standings.component';
+import { LeagueHistoryComponent } from './league-history/league-history.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { StandingsComponent } from './standings/standings.component';
     DraftOverviewComponent,
     MatchupDetailComponent,
     StrongPipePipe,
-    StandingsComponent
+    StandingsComponent,
+    LeagueHistoryComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,52 @@
+<table mat-table [dataSource]="dataSource" multiTemplateDataRows class="mat-elevation-z8">
+  <ng-container matColumnDef="{{column}}" *ngFor="let column of columnsToDisplay">
+    <th mat-header-cell *matHeaderCellDef> {{column}} </th>
+    <td class="nameExpand" mat-cell *matCellDef="let element"> {{element.ownerName}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="expandedDetail">
+    <td mat-cell *matCellDef="let element" [attr.colspan]="columnsToDisplay.length">
+      <div class="example-element-detail"
+           [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+        <ul class="example-element-position">
+          <mat-list-item role="listitem"><strong>Team Name: </strong>{{element.teamName}}</mat-list-item>
+          <mat-list-item role="listitem"><strong>Years Active: </strong>{{element.yearsActive}}</mat-list-item>
+          <mat-list-item role="listitem"><strong>Overall Record: </strong>{{element.overallRecord}}</mat-list-item>
+          <mat-list-item role="listitem"><strong>Career Winning %: </strong>{{element.aggregateWinningPercentage}}</mat-list-item>
+          <mat-list-item role="listitem"><strong>True Record: </strong>{{element.totalTrueRecord}}</mat-list-item>
+          <mat-list-item role="listitem"><strong>True Winning %: </strong>{{element.totalTrueRecordPercentage}}</mat-list-item>
+          <mat-list-item role="listitem"><strong>Career Points Scored: </strong>{{element.totalPointsFor}}</mat-list-item>
+          <mat-list-item role="listitem"><strong>Career Points Allowed: </strong>{{element.totalPointsAgainst}}</mat-list-item>
+          <mat-list-item role="listitem"><strong>Average Points Scored/Season: </strong>{{element.averagePointsFor}}</mat-list-item>
+          <mat-list-item role="listitem"><strong>Average Points Allowed/Season: </strong>{{element.averagePointsAgainst}}</mat-list-item>
+          <mat-list-item role="listitem"><strong>Average Points Scored/Game: </strong>{{element.averagePointsPerGame}}</mat-list-item>
+          <mat-list-item role="listitem"><strong>Average Points Allowed/Game: </strong>{{element.averagePointsAllowedPerGame}}</mat-list-item>
+          <mat-list-item role="listitem"><strong>Highest Score: </strong>{{element.highestScore}}</mat-list-item>
+          <mat-list-item role="listitem"><strong>Lowest Score: </strong>{{element.lowestScore}}</mat-list-item>
+          <mat-list-item role="listitem"><strong>Championships: </strong>{{element.championships}}</mat-list-item>
+          <mat-list-item role="listitem"><strong>Highest Season Rank: </strong>{{element.highestRank}}</mat-list-item>
+          <mat-list-item role="listitem"><strong>Lowest Season Rank : </strong>{{element.lowestRank}}</mat-list-item>
+          <mat-list-item role="listitem"><strong>Average Season Rank: </strong>{{element.averageFinishRanking}}</mat-list-item>
+          <mat-list-item role="listitem"><strong>Biggest Victory Margin: </strong>{{element.highestVictoryMargin}}</mat-list-item>
+          <mat-list-item role="listitem"><strong>Biggest Defeat Margin: </strong>{{element.highestDefeatMargin}}</mat-list-item>
+          <mat-list-item role="listitem"><strong>Winning Seasons (Including .500 Seasons): </strong>{{element.winningSeasons}}</mat-list-item>
+          <mat-list-item role="listitem"><strong>Losing Seasons: </strong>{{element.losingSeasons}}</mat-list-item>
+          <mat-list-item role="listitem"><strong>Best Single-Season Record: </strong>{{element.bestSingleSeasonRecord}}</mat-list-item>
+          <mat-list-item role="listitem"><strong>Worst Single-Season Record: </strong>{{element.worstSingleSeasonRecord}}</mat-list-item>
+          <mat-list-item role="listitem"><strong>Total Roster Moves: </strong>{{element.totalRosterMoves}}</mat-list-item>
+          <mat-list-item role="listitem"><strong>Average Roster Moves - Season: </strong>{{element.averageRosterMoves}}</mat-list-item>
+          <mat-list-item role="listitem"><strong>Average Raw Power Ranking: </strong>{{element.averageRawPowerRanking}}</mat-list-item>
+          <mat-list-item role="listitem"><strong>Average Adjusted Power Ranking: </strong>{{element.aggregateOilPowerRanking}}</mat-list-item>
+        </ul>
+      </div>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+  <tr mat-row *matRowDef="let element; columns: columnsToDisplay;"
+      class="example-element-row"
+      [class.example-expanded-row]="expandedElement === element"
+      (click)="expandedElement = expandedElement === element ? null : element">
+  </tr>
+  <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
+</table>
