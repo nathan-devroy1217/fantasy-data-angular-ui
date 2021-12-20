@@ -8,7 +8,7 @@ import { AfterViewInit } from '@angular/core';
 import Utils from '../Utils';
 import { FantasyHistoryComposite } from '../FantasyHistoryComposite';
 import { animate, state, style, transition, trigger } from '@angular/animations';
-
+import { mapKeys, getKeyAttribute, parseData } from './league-history-helper.component';
 @Component({
   selector: 'app-league-history',
   templateUrl: './league-history.component.html',
@@ -29,6 +29,15 @@ export class LeagueHistoryComponent implements OnInit, AfterViewInit {
   dataSource = new MatTableDataSource<FantasyTeamHistoricalStats>();
   expandedElement: any;
   expanded : boolean = false;
+  statsKeys : String[] = [];
+  myVal : Number = 1;
+
+  backwardVals = ['championships','highestScore','yearsActive','longestWinningStreak','longestLosingStreak',
+  'totalTrueRecord','totalTrueRecordPercentage','totalPointsFor','totalPointsAgainst',
+  'averagePointsFor','averagePointsAgainst','averagePointsPerGame','averagePointsAllowedPerGame',
+  'highestVictoryMargin','highestDefeatMargin','bestSingleSeasonRecord','totalRosterMoves',
+  'averageRosterMoves','averageRawPowerRanking','aggregateOilPowerRanking','aggregateWinningPercentage',
+  'overallRecord'];
 
   columnsToDisplay = ['Fantasy Team'];
   expandedColumnsToDisplay : String[] = ['yearsActive'];
@@ -91,7 +100,7 @@ export class LeagueHistoryComponent implements OnInit, AfterViewInit {
         bestSingleSeasonRecord : team.bestSingleSeasonRecord,
         worstSingleSeasonRecord : team.worstSingleSeasonRecord,
         winningSeasons : team.winningSeasons,
-        losingSeasons: team.losingSeasons,
+        losingSeasons : team.losingSeasons,
         totalRosterMoves : team.totalRosterMoves,
         averageRosterMoves : team.averageRosterMoves,
         averageFinishRanking : team.averageFinishRanking,
@@ -104,6 +113,9 @@ export class LeagueHistoryComponent implements OnInit, AfterViewInit {
 
     this.dataSource.data = this.historyStats;
     this.dataSource.sort;
+    let keys = mapKeys(this.historyStats);
+    keys = ['', ...keys];
+    this.statsKeys = keys;
   }
 
   setExpanded() : void {
@@ -112,11 +124,41 @@ export class LeagueHistoryComponent implements OnInit, AfterViewInit {
     } else {
       this.expanded = false;
     }
-
-    console.log('EXPANDED: ' + this.expanded);
   }
 
   getExpanded() : Boolean {
     return this.expanded;
   }
+
+  onOptionsSelected(key : string){
+
+    let value : any = getKeyAttribute(key);
+    console.log("the selected value is " + value);
+
+    let sortData = this.dataSource.data.sort((a: any, b: any) => {
+      let valToCompare1 = parseData(a, a[value], value);
+      let valToCompare2 = parseData(b, b[value], value);
+
+      console.log(valToCompare1 + ' --- ' + valToCompare2);
+
+      if (valToCompare1 < valToCompare2) {
+        if(this.backwardVals.includes(value)) {
+          return 1;
+        } else {
+          return -1;
+        }
+      } else if (valToCompare1 > valToCompare2) {
+        if(this.backwardVals.includes(value)) {
+          return -1;
+        } else {
+          return 1
+        }
+      } else {
+          return 0;
+      }
+    });
+
+    this.dataSource.data = sortData;
+  }
 }
+
