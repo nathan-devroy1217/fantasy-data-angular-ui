@@ -35,6 +35,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { StrongPipePipe } from './strong-pipe.pipe';
 import { StandingsComponent } from './standings/standings.component';
 import { LeagueHistoryComponent } from './league-history/league-history.component';
+import { MessageModalComponent } from './message-modal/message-modal.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { LeagueHistoryComponent } from './league-history/league-history.componen
     MatchupDetailComponent,
     StrongPipePipe,
     StandingsComponent,
-    LeagueHistoryComponent
+    LeagueHistoryComponent,
+    MessageModalComponent
   ],
   imports: [
     BrowserModule,

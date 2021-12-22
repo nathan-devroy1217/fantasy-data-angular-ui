@@ -1,3 +1,5 @@
+import { MatDialog } from '@angular/material/dialog';
+import { MessageModalComponent } from './../message-modal/message-modal.component';
 import { FantasyTeamHistoricalStats } from './../FantasyHistoryComposite';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
@@ -22,7 +24,6 @@ import { mapKeys, getKeyAttribute, parseData } from './league-history-helper.com
   ],
 })
 export class LeagueHistoryComponent implements OnInit, AfterViewInit {
-
   isMobile : boolean;
   historyData = <FantasyHistoryComposite>{}
   historyStats : FantasyTeamHistoricalStats[] = [];
@@ -46,7 +47,8 @@ export class LeagueHistoryComponent implements OnInit, AfterViewInit {
 
   constructor(
     private historyService : HistoryService,
-    private router: Router
+    private router: Router,
+    public dialog: MatDialog
   ) {
     this.isMobile = Utils.verifyDesktop();
     this.sort = new MatSort();
@@ -159,6 +161,13 @@ export class LeagueHistoryComponent implements OnInit, AfterViewInit {
     });
 
     this.dataSource.data = sortData;
+  }
+
+  openMessageModal(element : any) : void {
+    console.log('ELEMENT: ' + element);
+    this.dialog.open(MessageModalComponent, {
+      data: element
+    });
   }
 }
 

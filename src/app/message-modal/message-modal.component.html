@@ -1,0 +1,13 @@
+<!-- <mat-card>{{data}}</mat-card> -->
+
+<mat-card class="message-card">
+  <mat-card-header>
+    <mat-card-title>{{messageData.headerName}}</mat-card-title>
+  </mat-card-header>
+  <mat-divider [inset]="true"></mat-divider>
+  <mat-card-content class="card-content">
+    <p>
+      {{messageData.message}}
+    </p>
+  </mat-card-content>
+</mat-card>

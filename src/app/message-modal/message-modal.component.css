@@ -1,0 +1,9 @@
+
+.message-card {
+  max-width: 400px;
+}
+
+.card-content {
+  position: relative;
+  padding-top: 15px;
+}
